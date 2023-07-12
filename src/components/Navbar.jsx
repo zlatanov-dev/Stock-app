@@ -1,34 +1,90 @@
-import { DesktopOutlined, FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons"
-import { HomeMaxOutlined } from "@mui/icons-material";
-import { Menu } from "antd"
-import { Link } from "react-router-dom"
+import {
+  CalendarOutlined,
+  ContactsOutlined,
+  HomeOutlined,
+  ProfileOutlined,
+  StockOutlined,
+  TeamOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { Menu } from "antd";
+import { Link } from "react-router-dom";
 
-function Navbar({ collapsed }) {
+function Navbar({ fontSize, fontSizePercent }) {
 
   return (
     <Menu
       theme="dark"
       defaultSelectedKeys={["1"]}
       mode="inline"
-      style={{ fontSize: "20px", marginBellow: "20px" }}
+      style={{
+        fontSize: fontSize,
+    }}
     >
-      <Menu.Item key="1" icon={<HomeMaxOutlined style={{ fontSize: collapsed ? "130%" : "100%", marginBottom: collapsed ? "20px" : "0" }} />}>
+      <Menu.Item
+        key="1"
+        icon={
+          <HomeOutlined style={{ fontSize: fontSizePercent }} />
+        }
+      >
         <Link to="/">Home</Link>
       </Menu.Item>
-      <Menu.Item key="2" icon={<DesktopOutlined style={{ fontSize: collapsed ? "130%" : "100%", marginBottom: collapsed ? "20px" : "0"  }} />}>
-        Option 2
+      <Menu.Item
+        key="2"
+        icon={
+          <StockOutlined style={{ fontSize: fontSizePercent }} />
+        }
+      >
+        Markets
       </Menu.Item>
-      <Menu.SubMenu key="sub1" icon={<UserOutlined style={{ fontSize: collapsed ? "130%" : "100%", marginBottom: collapsed ? "20px" : "0"  }} />} title="User">
-        <Menu.Item key="3">Tom</Menu.Item>
-        <Menu.Item key="4">Bill</Menu.Item>
-        <Menu.Item key="5">Alex</Menu.Item>
+      <Menu.Item
+        key="3"
+        icon={
+          <ProfileOutlined style={{ fontSize: fontSizePercent }} />
+        }
+      >
+        News
+      </Menu.Item>
+      <Menu.Item
+        key="4"
+        icon={
+          <CalendarOutlined style={{ fontSize: fontSizePercent }} />
+        }
+      >
+        Calendar
+      </Menu.Item>
+
+      {/* Conditionaly show Login Logout and Register */}
+
+      <Menu.SubMenu
+        key="sub1"
+        icon={
+          <UserOutlined style={{ fontSize: fontSizePercent}} />
+        }
+        title="User"
+      >
+        <Menu.Item key="5">Tom</Menu.Item>
+        <Menu.Item key="6">Bill</Menu.Item>
+        <Menu.Item key="7">Alex</Menu.Item>
       </Menu.SubMenu>
-      <Menu.SubMenu key="sub2" icon={<TeamOutlined style={{ fontSize: collapsed ? "130%" : "100%", marginBottom: collapsed ? "20px" : "0"  }} />} title="Team">
-        <Menu.Item key="6">Team 1</Menu.Item>
-        <Menu.Item key="8">Team 2</Menu.Item>
+      {/* Conditionally show if user is Logged in MyPortfolio */}
+      <Menu.SubMenu
+        key="sub2"
+        icon={
+          <TeamOutlined style={{ fontSize: fontSizePercent }} />
+        }
+        title="Team"
+      >
+        <Menu.Item key="8">Team 1</Menu.Item>
+        <Menu.Item key="9">Team 2</Menu.Item>
       </Menu.SubMenu>
-      <Menu.Item key="9" icon={<FileOutlined style={{ fontSize: collapsed ? "130%" : "100%", marginBottom: collapsed ? "20px" : "0"  }} />}>
-        Files
+      <Menu.Item
+        key="10"
+        icon={
+          <ContactsOutlined style={{ fontSize: fontSizePercent }} />
+        }
+      >
+        Contacts
       </Menu.Item>
     </Menu>
   );
