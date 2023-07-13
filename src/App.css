@@ -1,0 +1,94 @@
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  height: 100px;
+}
+
+.custom-search-bar .ant-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; /* Adjust the height value to increase the search bar height */
+  font-size: 20px; /* Adjust the font size if needed */
+}
+
+.custom-search-bar .ant-btn {
+  height: 50px; /* Adjust the height value to match the input height */
+  font-size: 20px; /* Adjust the font size if needed */
+  padding: 0 15px; /* Adjust the padding as needed */
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.chart-card {
+  width: 100%; /* Set the initial width to 100% */
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.time-frame-button {
+  margin-right: 10px;
+  font-size: large;
+}
+
+.collapsed-menu .menu-item {
+  margin-bottom: 20px;
+}
+
+
+.responsive-chart-container {
+
+  width: 900px;
+  height: 600px;
+}
+
+.stock-title-container {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .responsive-chart-container {
+    width: 290px !important;
+    height: 250px !important;
+  }
+  .time-frame-button {
+    font-size: small !important;
+  }
+
+  .custom-search-bar .ant-input,
+  .custom-search-bar .ant-btn {
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .search-bar-container {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 992px) {
+  .responsive-chart-container {
+    width: 550px;
+    height: 350px;
+  }
+  .time-frame-button{
+    font-size: medium;
+  }
+}
+
