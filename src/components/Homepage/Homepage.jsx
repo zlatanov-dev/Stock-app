@@ -1,43 +1,59 @@
 import SearchBar from "./Search.jsx";
 import { useGetStocksQuery } from "../../services/stockApi.js";
 import ChartComponent from "./ChartComponent.jsx";
-import { useState } from "react";
-import { Card, Col, Row, Button } from "antd";
+import { useEffect, useState } from "react";
+import { Col, Row, Button, Typography } from "antd";
+
 
 
 function Homepage({ searchBarWidth }) {
   const [searchTerm, setSearchTerm] = useState("MSFT");
-  const { data, isLoading } = useGetStocksQuery(searchTerm);
+  const [queryFunction, setQueryFunction] = useState("TIME_SERIES_DAILY");
+  const { data, isLoading, refetch } = useGetStocksQuery(searchTerm, queryFunction);
+  
+  useEffect(() => {
+    refetch();
+  }, [queryFunction]);
 
   if (isLoading) return <p>Loading...</p>;
 
+  console.log(queryFunction)
+  const title = data["Meta Data"]["2. Symbol"];
+  
   return (
     <>
       <div className="search-bar-container">
         <SearchBar searchBarWidth={searchBarWidth} setSearchTerm={setSearchTerm} />
       </div>
       <div className="chart-container">
-          <Card bordered={false}>
+
+        <div className="chart-card-container">
+          <div className="stock-title-container">
+          <Typography.Title level={1} style={{ color: "#001529" }}>
+              {title}
+          </Typography.Title>
+          </div>
             <div className="button-container">
-              <Row justify="end">
+            <Row justify="end" align="middle">
                 <Col>
-                  <Button type="primary" className="time-frame-button">5</Button>
+                  <Button type="primary" onClick={() => setQueryFunction("TIME_SERIES_DAILY")} className="time-frame-button">Day</Button>
                 </Col>
                 <Col>
-                  <Button type="primary" className="time-frame-button">10</Button>
+                  <Button type="primary" onClick={() => setQueryFunction("TIME_SERIES_WEEKLY")} className="time-frame-button">Week</Button>
                 </Col>
                 <Col>
-                  <Button type="primary" className="time-frame-button">15</Button>
-                </Col>
-                <Col>
-                  <Button type="primary" className="time-frame-button">20</Button>
+                  <Button type="primary" onClick={() => setQueryFunction("TIME_SERIES_MONTHLY")} className="time-frame-button">Month</Button>
                 </Col>
               </Row>
+              
             </div>
+            <div className="responsive-chart-container">
             <ChartComponent data={data} />
-          </Card>
-      </div>
+            </div>
+         </div>
+        </div>
     </>
+  // ON click on the button there should be a useState that changes the function that the querry awaits
   );
 }
 

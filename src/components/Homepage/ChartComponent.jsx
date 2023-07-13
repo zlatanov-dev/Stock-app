@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 const ChartComponent = ({ data }) => {
@@ -32,37 +33,39 @@ const ChartComponent = ({ data }) => {
   };
 
   return (
-    <LineChart
-      style={{
-        margin: "auto",
-        marginTop: "20px",
-        marginBottom: "20px",
-        display: "flex",
-        justifyContent: "center",
-      }}
-      width={900}
-      height={450}
-      data={chartData}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis
-        dataKey="date"
-        tickFormatter={formatXAxisTick} // Apply the custom tick formatter
-      />
-      <YAxis
-        domain={[minClose - yDomainBuffer, maxClose + yDomainBuffer]}
-        tickFormatter={(value) => parseFloat(value).toFixed(2)} // Format y-axis labels
-      />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="close"
-        stroke="#5DB43D"
-        strokeWidth={2}
-        dot={false}
-      />
-    </LineChart>
+      <ResponsiveContainer width="100%" height="80%">
+        <LineChart
+          style={{
+            margin: "auto",
+            marginTop: "20px",
+            marginBottom: "20px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+          width={900}
+          height={450}
+          data={chartData}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="date"
+            tickFormatter={formatXAxisTick} // Apply the custom tick formatter
+          />
+          <YAxis
+            domain={[minClose - yDomainBuffer, maxClose + yDomainBuffer]}
+            tickFormatter={(value) => parseFloat(value).toFixed(2)} // Format y-axis labels
+          />
+          <Tooltip />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey="close"
+            stroke="#5DB43D"
+            strokeWidth={2}
+            dot={false}
+          />
+        </LineChart>
+      </ResponsiveContainer>
   );
 };
 

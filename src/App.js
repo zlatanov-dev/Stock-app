@@ -1,44 +1,13 @@
-import { Homepage, Navbar } from "./components";
+import { Homepage, Navbar, Header } from "./components";
+import { deviceType, sizeByDevice } from "./utils/device";
+import { Route, Routes } from "react-router-dom";
 
-import { Link, Route, Routes } from "react-router-dom";
-
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { Layout, Menu, theme } from "antd";
-import { useState } from "react";
+import { Layout, theme } from "antd";
+import { useEffect, useState } from "react";
 
 import "./App.css";
 
-const { Header, Content, Footer, Sider } = Layout;
-
-function getItem(label, key, icon, children) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-
-const items = [
-  getItem("Option 1", "1", <PieChartOutlined style={{ fontSize:"25px"}}/>),
-  getItem("Option 2", "2", <DesktopOutlined style={{ fontSize:"25px"}}/>),
-  getItem("User", "sub1", <UserOutlined style={{ fontSize:"25px"}}/>, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Team", "sub2", <TeamOutlined style={{ fontSize:"25px"}}/>, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <FileOutlined style={{ fontSize:"25px"}}/>),
-];
+const {  Content, Footer, Sider } = Layout;
 
 function App() {
   
@@ -47,27 +16,40 @@ function App() {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const [screenSize, setScreenSize] = useState(null);
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const device = deviceType(screenSize);
+  
+  const size = sizeByDevice(device, collapsed);
 
   return (
     <div
       className="app"
       style={{ height: "100vh", backgroundColor: "#F8F8FF" }}
     >
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ minHeight: "100vh"}}>
         <Sider
           collapsible
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
+          width={size.width}
         >
+
           <div className="demo-logo-vertical" />
-          <Navbar collapsed={collapsed} />
-          
+      
+          <Navbar {...size} />
+          dis
         </Sider>
         <Layout>
-          <Header style={{ padding: 0, background: colorBgContainer }}>
-            HELLO!
-          </Header>
-          <Content style={{ margin: "0 16px"  }}>
+          <Header  colorContainer = {colorBgContainer} />
+          <Content style={{ margin: "0 16px", overflow: "auto"   }}>
             <div
               style={{
                 paddingBottom: 50,
@@ -76,7 +58,7 @@ function App() {
               }}
             >
               <Routes>
-                <Route path="/" element={<Homepage />} />
+                <Route path="/" element={<Homepage {...size}/>} />
               </Routes>
             </div>
           </Content>
@@ -87,4 +69,8 @@ function App() {
   );
 }
 
+
+
+
 export default App;
+
