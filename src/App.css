@@ -1,3 +1,10 @@
+.site-layout-background {
+  background: #fff;
+    padding-bottom: 50;
+    height: "90vh";
+    background: white;
+}
+
 .search-bar-container {
   display: flex;
   justify-content: center;
@@ -59,6 +66,24 @@
 .stock-title-container {
   display: flex;
   justify-content: center;
+}
+
+.home-title {
+  margin-left: 20px;
+  font-size: 1.4rem !important;
+}
+.show-more {
+  font-size: 1.3rem !important;
+}
+
+.mover-card-container {
+  min-height: 65vh !important;
+}
+.mover-card {
+  min-width: 250px;
+}
+.mover-card .mover-image {
+  width: 35px;
 }
 
 @media (max-width: 768px) {

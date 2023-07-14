@@ -7,10 +7,9 @@ import { useEffect, useState } from "react";
 
 import "./App.css";
 
-const {  Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 
 function App() {
-  
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -26,7 +25,7 @@ function App() {
   }, []);
 
   const device = deviceType(screenSize);
-  
+
   const size = sizeByDevice(device, collapsed);
 
   return (
@@ -34,43 +33,42 @@ function App() {
       className="app"
       style={{ height: "100vh", backgroundColor: "#F8F8FF" }}
     >
-      <Layout style={{ minHeight: "100vh"}}>
+      <Layout style={{ minHeight: "100vh" }}>
         <Sider
           collapsible
           collapsed={collapsed}
           onCollapse={(value) => setCollapsed(value)}
           width={size.width}
         >
-
           <div className="demo-logo-vertical" />
-      
           <Navbar {...size} />
           dis
         </Sider>
         <Layout>
-          <Header  colorContainer = {colorBgContainer} />
-          <Content style={{ margin: "0 16px", overflow: "auto"   }}>
+          <Header colorContainer={colorBgContainer} />
+          <Content
+            style={{
+              margin: "0 16px",
+              overflow: "auto",
+              minHeight: "calc(100vh - 64px)",
+              color: "#fff",
+            }}
+          >
             <div
-              style={{
-                paddingBottom: 50,
-                height: "90vh",
-                background: colorBgContainer,
-              }}
+              className="site-layout-background"
             >
               <Routes>
-                <Route path="/" element={<Homepage {...size}/>} />
+                <Route path="/" element={<Homepage {...size} />} />
               </Routes>
             </div>
           </Content>
-          <Footer style={{ textAlign: "center", fontSize: "20px"}}>@2023 Created by Zlatanov-dev</Footer>
+          <Footer style={{ textAlign: "center", fontSize: "20px" }}>
+            @2023 Created by Zlatanov-dev
+          </Footer>
         </Layout>
       </Layout>
     </div>
   );
 }
 
-
-
-
 export default App;
-

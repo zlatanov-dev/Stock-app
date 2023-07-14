@@ -22,10 +22,12 @@ const ChartComponent = ({ data }) => {
     dataObject = data["Time Series (Daily)"];
   }
 
-  const chartData = Object.entries(dataObject).map(([date, values]) => ({
+  const chartData = Object.entries(dataObject)
+  .map(([date, values]) => ({
     date,
     close: parseFloat(values["4. close"]).toFixed(2),
-  }));
+  }))
+  .reverse();
 
   // Find the minimum and maximum values of 'close' in the chart data
   const minClose = Math.min(...chartData.map((entry) => entry.close));
