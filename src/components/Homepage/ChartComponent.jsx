@@ -11,7 +11,17 @@ import {
 } from "recharts";
 
 const ChartComponent = ({ data }) => {
-  const dataObject = data["Time Series (Daily)"];
+  
+  const period = data["Meta Data"]["1. Information"];
+  let dataObject = {};
+  if( period === "Monthly Prices (open, high, low, close) and Volumes"){
+    dataObject = data["Monthly Time Series"];
+  } else if (period === "Weekly Prices (open, high, low, close) and Volumes") {
+    dataObject = data["Weekly Time Series"];
+  } else {
+    dataObject = data["Time Series (Daily)"];
+  }
+
   const chartData = Object.entries(dataObject).map(([date, values]) => ({
     date,
     close: parseFloat(values["4. close"]).toFixed(2),

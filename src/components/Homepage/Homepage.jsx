@@ -9,18 +9,23 @@ import { Col, Row, Button, Typography } from "antd";
 function Homepage({ searchBarWidth }) {
   const [searchTerm, setSearchTerm] = useState("MSFT");
   const [queryFunction, setQueryFunction] = useState("TIME_SERIES_DAILY");
-  const { data, isLoading, isError, refetch } = useGetStocksQuery(searchTerm, queryFunction);
+  const { data, isLoading, isError, refetch } = useGetStocksQuery({
+    stock: searchTerm,
+    queryFunction,
+  });
+  
+
   
   useEffect(() => {
     refetch();
-  }, [queryFunction]);
+  }, [queryFunction, refetch]);
 
   if (isLoading) return <p>Loading...</p>;
 
   if (isError) return <p>Error occurred while fetching data.</p>;
 
-  console.log(queryFunction)
-  const title = data["Meta Data"]["2. Symbol"];
+  const { "2. Symbol": title } = data["Meta Data"];
+
   
   return (
     <>

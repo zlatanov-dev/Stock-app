@@ -17,9 +17,10 @@ export const stockApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getStocks: builder.query({
-      query: (stock, queryFuntion) =>
-        createRequest(`/query?function=TIME_SERIES_DAILY&symbol=${stock}`),
+      query: ({ stock, queryFunction }) =>
+        createRequest(`/query?function=${queryFunction}&symbol=${stock}`),
     }),
+    
   }),
 });
 
