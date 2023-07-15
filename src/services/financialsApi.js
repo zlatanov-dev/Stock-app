@@ -19,10 +19,20 @@ export const moversApi = createApi({
     getMovers: builder.query({
       query: () =>
         createRequest(
-          `/market/v2/get-movers?region=US&lang=en-US&count=5&start=0`
+          `/market/v2/get-movers`
         ),
     }),
+    getOnSearch: builder.query({
+      query: (searchParam) => createRequest(`/market/v2/auto-complete?q=${searchParam}`),
+  }),
+  getSearchedStock: builder.query({
+    query: (performanceId) => createRequest(`/stock/v2/get-realtime-data?performanceId=${performanceId}`),
+})
   }),
 });
 
-export const { useGetMoversQuery } = moversApi;
+export const { 
+  useGetMoversQuery,
+  useGetOnSearchQuery,
+  useGetSearchedStockQuery
+} = moversApi;

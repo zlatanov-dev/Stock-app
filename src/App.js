@@ -42,7 +42,6 @@ function App() {
         >
           <div className="demo-logo-vertical" />
           <Navbar {...size} />
-          dis
         </Sider>
         <Layout>
           <Header colorContainer={colorBgContainer} />
@@ -59,6 +58,7 @@ function App() {
             >
               <Routes>
                 <Route path="/" element={<Homepage {...size} />} />
+                <Route path="/stocks/:performanceId" element={<Homepage {...size} />} />
               </Routes>
             </div>
           </Content>

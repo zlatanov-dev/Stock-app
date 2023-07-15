@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import { stockApi } from "../services/stockApi";
-import { moversApi } from "../services/moversApi";
+import { moversApi } from "../services/financialsApi";
 
 export default configureStore({
     reducer: {

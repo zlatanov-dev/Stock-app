@@ -18,6 +18,10 @@ const ChartComponent = ({ data }) => {
     dataObject = data["Monthly Time Series"];
   } else if (period === "Weekly Prices (open, high, low, close) and Volumes") {
     dataObject = data["Weekly Time Series"];
+  } else if (period === "Intraday (30min) open, high, low, close prices and volume") {
+      dataObject = data["Time Series (30min)"];
+    } else if (period ===   "Intraday (60min) open, high, low, close prices and volume") {
+      dataObject = data["Time Series (60min)"];
   } else {
     dataObject = data["Time Series (Daily)"];
   }
