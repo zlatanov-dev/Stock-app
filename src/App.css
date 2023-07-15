@@ -1,3 +1,10 @@
+.site-layout-background {
+  background: #fff;
+    padding-bottom: 50;
+    height: "90vh";
+    background: white;
+}
+
 .search-bar-container {
   display: flex;
   justify-content: center;
@@ -59,6 +66,30 @@
 .stock-title-container {
   display: flex;
   justify-content: center;
+}
+
+.movers-title{
+  font-size: 2.3rem !important;
+  margin-left: 20px;
+}
+
+.movers-secondary-title {
+  font-size: 1.4rem !important;
+  margin-left: 20px;
+}
+
+.show-more {
+  font-size: 1.3rem !important;
+}
+
+.mover-card-container {
+  min-height: 65vh !important;
+}
+.mover-card {
+  min-width: 250px;
+}
+.mover-card .mover-image {
+  width: 35px;
 }
 
 @media (max-width: 768px) {

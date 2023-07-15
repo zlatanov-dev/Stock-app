@@ -13,8 +13,9 @@ import { Link } from "react-router-dom";
 function Navbar({ fontSize, fontSizePercent }) {
 
   return (
+   
     <Menu
-      theme="dark"
+      theme='dark'
       defaultSelectedKeys={["1"]}
       mode="inline"
       style={{

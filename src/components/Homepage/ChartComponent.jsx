@@ -18,14 +18,20 @@ const ChartComponent = ({ data }) => {
     dataObject = data["Monthly Time Series"];
   } else if (period === "Weekly Prices (open, high, low, close) and Volumes") {
     dataObject = data["Weekly Time Series"];
+  } else if (period === "Intraday (30min) open, high, low, close prices and volume") {
+      dataObject = data["Time Series (30min)"];
+    } else if (period ===   "Intraday (60min) open, high, low, close prices and volume") {
+      dataObject = data["Time Series (60min)"];
   } else {
     dataObject = data["Time Series (Daily)"];
   }
 
-  const chartData = Object.entries(dataObject).map(([date, values]) => ({
+  const chartData = Object.entries(dataObject)
+  .map(([date, values]) => ({
     date,
     close: parseFloat(values["4. close"]).toFixed(2),
-  }));
+  }))
+  .reverse();
 
   // Find the minimum and maximum values of 'close' in the chart data
   const minClose = Math.min(...chartData.map((entry) => entry.close));
