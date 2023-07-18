@@ -1,4 +1,4 @@
-import { Homepage, Navbar, AnnouncementBar } from "./components";
+import { HomePage, Navbar, AnnouncementBar } from "./components";
 import { deviceType, sizeByDevice } from "./utils/device";
 import { Route, Routes } from "react-router-dom";
 
@@ -53,8 +53,8 @@ function App() {
               className="site-layout-background"
             >
               <Routes>
-                <Route path="/" element={<Homepage {...size} />} />
-                <Route path="/stocks/:performanceId" element={<Homepage {...size} />} />
+                <Route path="/" element={<HomePage {...size} />} />
+                <Route path="/stocks/:performanceId" element={<HomePage {...size} />} />
               </Routes>
             </div>
           </Content>

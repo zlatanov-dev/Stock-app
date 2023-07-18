@@ -1,48 +1,23 @@
-import SearchBar from "./Search.jsx";
-import ChartComponent from "./ChartComponent.jsx";
-import Movers from "./Movers.jsx";
-import { useGetStocksQuery } from "../../services/stockApi.js";
-
-import { useEffect, useState } from "react";
 import { Col, Row, Button, Typography } from "antd";
-import millify from "millify";
 
-function Homepage({ searchBarWidth }) {
-  const [selectedButton, setSelectedButton] = useState("DAY");
-  const [queryFunction, setQueryFunction] = useState("TIME_SERIES_DAILY");
-  const [interval, setInterval] = useState("5min");
-  const [searchedStock, setSearchedStock] = useState({});
+import ChartComponent from '../ChartComponent'
+import { useDispatch, useSelector } from "react-redux";
+import SearchBar from "../HomePage/Search";
 
-  const stock = searchedStock?.ticker || "MSFT";
 
-  const { data, isLoading, isError, refetch } = useGetStocksQuery({
-    stock,
-    queryFunction,
-    interval,
-  });
+const { Title } = Typography;
 
-  useEffect(() => {
-    refetch();
-  }, [queryFunction, refetch]);
-
-  const { Title } = Typography;
-
-  if (isLoading) return <p>Loading...</p>;
-
-  if (isError) return <p>Error occurred while fetching data.</p>;
-
-  const title = searchedStock?.ticker;
-
+function Details() {
+  
   return (
     <>
-      <div className="search-bar-container">
+    <div className="search-bar-container">
         <SearchBar
           searchBarWidth={searchBarWidth}
           setSearchedStock={setSearchedStock}
         />
       </div>
-
-      <div className="chart-container">
+    <div className="chart-container">
         <div className="chart-card-container">
           <div className="stock-title-container">
             <Title level={2} style={{ color: "#001529" }}>
@@ -135,30 +110,9 @@ function Homepage({ searchBarWidth }) {
             <ChartComponent data={data} />
           </div>
         </div>
-      </div>
-      {searchedStock && Object.keys(searchedStock).length > 0 && (
-        <div className="chart-details-container" style={{ marginLeft: "20px" }}>
-          <div className="chart-details-card" style={{ color: "black" }}>
-            <Title> Details </Title>
-            <p>Exchange: </p>
-            <p>Price: {searchedStock?.lastPrice}</p>
-            <p>Status: {searchedStock?.tradingStatus}</p>
-            <p>
-              Market Cap: {millify(searchedStock?.marketCap)}{" "}
-              {searchedStock?.currencySymbol}
-            </p>
-          </div>
         </div>
-      )}
-      <div className="movers-container">
-        <Title className="movers-title">Movers</Title>
-        <Title className="movers-secondary-title">
-          Discover the equities with the greatest gains in the trading day.
-        </Title>
-      </div>
-      <Movers />
     </>
-  );
+  )
 }
 
-export default Homepage;
+export default Details

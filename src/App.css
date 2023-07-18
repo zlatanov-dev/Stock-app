@@ -116,7 +116,7 @@
 }
 
 .button > div {
-  animation: marquee 45s infinite normal linear;
+  animation: marquee 55s infinite normal linear;
   padding: 0 0.5em;
 }
 
