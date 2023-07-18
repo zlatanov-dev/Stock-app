@@ -1,8 +1,8 @@
-import { Homepage, Navbar, Header } from "./components";
+import { Homepage, Navbar, AnnouncementBar } from "./components";
 import { deviceType, sizeByDevice } from "./utils/device";
 import { Route, Routes } from "react-router-dom";
 
-import { Layout, theme } from "antd";
+import { Layout} from "antd";
 import { useEffect, useState } from "react";
 
 import "./App.css";
@@ -11,10 +11,6 @@ const { Content, Footer, Sider } = Layout;
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
   const [screenSize, setScreenSize] = useState(null);
 
   useEffect(() => {
@@ -44,7 +40,7 @@ function App() {
           <Navbar {...size} />
         </Sider>
         <Layout>
-          <Header colorContainer={colorBgContainer} />
+        < AnnouncementBar />
           <Content
             style={{
               margin: "0 16px",

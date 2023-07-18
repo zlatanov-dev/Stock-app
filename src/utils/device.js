@@ -13,24 +13,24 @@ export function sizeByDevice(device, collapsed) {
 
   if(device === "mobile") {
     return {
-      width: collapsed ? 80 : 200,
-      fontSize: 20,
-      fontSizePercent: collapsed ? "130%" : "100%" ,
+      width: collapsed ? 80 : 150,
+      fontSize: 10,
+      fontSizePercent: collapsed ? "120%" : "100%" ,
       searchBarWidth: 350,
     }
   } else if (device === "tablet") {
     return {
-      width: collapsed ? 100 : 250,
-      fontSize: 25,
-      fontSizePercent: collapsed ? "130%" : "100%" ,
+      width: collapsed ? 100 : 170,
+      fontSize: 15,
+      fontSizePercent: collapsed ? "120%" : "100%" ,
       searchBarWidth: 400,
     }
   } else {
     return {
-      width: collapsed ? 120 : 300,
-      fontSize: 30,
-      fontSizePercent: collapsed ? "130%" : "100%" ,
-      searchBarWidth: 700,
+      width: collapsed ? 120 : 200,
+      fontSize: 20,
+      fontSizePercent: collapsed ? "120%" : "100%" ,
+      searchBarWidth: 600,
     }
   }
 }
