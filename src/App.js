@@ -6,6 +6,7 @@ import { Layout} from "antd";
 import { useEffect, useState } from "react";
 
 import "./App.css";
+import Details from "./components/DetailsPage/Details";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -54,7 +55,7 @@ function App() {
             >
               <Routes>
                 <Route path="/" element={<HomePage {...size} />} />
-                <Route path="/stocks/:performanceId" element={<HomePage {...size} />} />
+                <Route path="/stocks/:performanceId/details" element={<Details {...size} />} />
               </Routes>
             </div>
           </Content>

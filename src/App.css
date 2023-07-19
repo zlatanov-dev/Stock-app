@@ -30,7 +30,7 @@
 .chart-container {
   display: flex;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: -15px;
 }
 
 .chart-card {
@@ -116,7 +116,7 @@
 }
 
 .button > div {
-  animation: marquee 55s infinite normal linear;
+  animation: marquee 65s infinite normal linear;
   padding: 0 0.5em;
 }
 
@@ -144,6 +144,11 @@
 
 .red span {
   color: #870c1f;
+}
+
+.ant-descriptions {
+  margin: -10px 10px 0px 10px;
+  padding-bottom: 10px;
 }
 
 @keyframes marquee {

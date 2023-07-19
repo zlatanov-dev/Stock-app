@@ -1,23 +1,50 @@
-import { Col, Row, Button, Typography } from "antd";
+import { useEffect, useState } from "react";
 
 import ChartComponent from '../ChartComponent'
-import { useDispatch, useSelector } from "react-redux";
-import SearchBar from "../HomePage/Search";
+import { useSelector } from "react-redux";
+import SearchBar from "../Search";
+import { useGetStocksQuery } from "../../services/stockApi.js";
+import Description from "./Description";
 
+import { Col, Row, Button, Typography } from "antd";
 
-const { Title } = Typography;
+function Details({ searchBarWidth }) {
+  const [selectedButton, setSelectedButton] = useState("DAY");
+  const [queryFunction, setQueryFunction] = useState("TIME_SERIES_DAILY");
+  const [interval, setInterval] = useState("5min");
+  
+  const searchedStockState = useSelector((state) => state.searchedStock);
+  const { searchResults } = searchedStockState;
 
-function Details() {
+  const stock = searchResults?.ticker || "MSFT";
+
+  const { data, isLoading, isError, refetch } = useGetStocksQuery({
+    stock,
+    queryFunction,
+    interval,
+  });
+
+  useEffect(() => {
+    refetch();
+  }, [queryFunction, refetch]);
+
+  const { Title } = Typography;
+
+  if (isLoading) return <p>Loading...</p>;
+
+  if (isError) return <p>Error occurred while fetching data.</p>;
+
+  const title = searchResults?.ticker;
   
   return (
     <>
-    <div className="search-bar-container">
+      <div className="search-bar-container">
         <SearchBar
           searchBarWidth={searchBarWidth}
-          setSearchedStock={setSearchedStock}
         />
       </div>
-    <div className="chart-container">
+
+      <div className="chart-container">
         <div className="chart-card-container">
           <div className="stock-title-container">
             <Title level={2} style={{ color: "#001529" }}>
@@ -110,7 +137,8 @@ function Details() {
             <ChartComponent data={data} />
           </div>
         </div>
-        </div>
+      </div>
+      <Description searchResults={searchResults}/>
     </>
   )
 }

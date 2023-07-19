@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { useGetOnSearchQuery, useGetSearchedStockQuery } from "../../services/financialsApi.js";
+import { useGetOnSearchQuery, useGetSearchedStockQuery } from "../services/financialApi.js";
 import { Input, Space } from "antd";
 
 import { useDispatch } from "react-redux";
-import { setSearchResults } from "../../services/searchedStock.js"
+import { setSearchResults } from "../services/searchedStock.js"
+import { useNavigate } from "react-router-dom";
 
 
 const { Search } = Input;
@@ -20,9 +21,11 @@ function SearchBar({
 
   const { data: searchedStock, isLoading: isSearchedStockLoading} = useGetSearchedStockQuery( performanceId || '0P000003MH');
 
+  const navigate = useNavigate();
+  
   const dispatch = useDispatch();
 
-  const onSearch = (value) => {
+  const onSearch = async (value) => {
     setSearchTerm(value);
   };
   
@@ -33,9 +36,14 @@ function SearchBar({
   
   useEffect(() => {
     if (searchedStock) {
-      dispatch(setSearchResults(searchedStock));
+      const updatedSearchedStock = {
+        ...searchedStock,
+        name: searchResult?.results?.[0]?.name,
+      };
+      dispatch(setSearchResults(updatedSearchedStock));
+      navigate(`/stocks/${performanceId}/details`);
     }
-  }, [searchedStock, dispatch]);
+  }, [searchedStock, dispatch, searchResult, navigate, performanceId]);
 
   if (isSearchLoading || isSearchedStockLoading) return <p>Loading...</p>;
 
@@ -46,6 +54,7 @@ function SearchBar({
         enterButton="Search"
         onSearch={onSearch}
         className="custom-search-bar"
+        
       />
     </Space>
   );
