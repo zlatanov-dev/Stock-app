@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useGetMoversQuery } from "../services/financialsApi.js";
+import { useGetMoversQuery } from "../services/financialApi.js";
 
 function AnnouncementBar() {
   const { data, isFetching } = useGetMoversQuery();
@@ -16,7 +16,7 @@ function AnnouncementBar() {
         <div className="announcement-wrapper">
           {moversList?.map((mover, index) => (
             <div key={index} className="announcement-item">
-              <Link to={`/stocks/${mover.performanceID}`}>{mover.ticker}</Link>
+              <Link to={`/stocks/${mover.performanceID}/details`}>{mover.ticker}</Link>
               {mover.percentNetChange > 0 ? (
                 <p className="announcement-paragraph green">
                   <span>{mover.percentNetChange.toFixed(2)}%</span>
@@ -33,6 +33,7 @@ function AnnouncementBar() {
     </div>
   );
 }
+
 
 // Fisher-Yates (also known as the Knuth) shuffle algorithm
 function shuffleArray(array) {

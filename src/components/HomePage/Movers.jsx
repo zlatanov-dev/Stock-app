@@ -2,7 +2,7 @@ import { Card, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import icon from "../../images/arrow.png";
 
-import { useGetMoversQuery } from "../../services/financialsApi.js";
+import { useGetMoversQuery } from "../../services/financialApi.js";
 
 function Movers() {
   const { data, isFetching } = useGetMoversQuery();

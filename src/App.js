@@ -1,4 +1,4 @@
-import { Homepage, Navbar, AnnouncementBar } from "./components";
+import { HomePage, Navbar, AnnouncementBar } from "./components";
 import { deviceType, sizeByDevice } from "./utils/device";
 import { Route, Routes } from "react-router-dom";
 
@@ -6,6 +6,7 @@ import { Layout} from "antd";
 import { useEffect, useState } from "react";
 
 import "./App.css";
+import Details from "./components/DetailsPage/Details";
 
 const { Content, Footer, Sider } = Layout;
 
@@ -53,8 +54,8 @@ function App() {
               className="site-layout-background"
             >
               <Routes>
-                <Route path="/" element={<Homepage {...size} />} />
-                <Route path="/stocks/:performanceId" element={<Homepage {...size} />} />
+                <Route path="/" element={<HomePage {...size} />} />
+                <Route path="/stocks/:performanceId/details" element={<Details {...size} />} />
               </Routes>
             </div>
           </Content>
