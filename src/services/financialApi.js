@@ -1,16 +1,16 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const API_KEY = process.env.REACT_APP_MOVERS_API_KEY;
-const MOVERS_API_HOST = process.env.REACT_APP_MOVERS_API_HOST;
+const API_KEY = process.env.REACT_APP_FINANCIAL_API_KEY;
+const FINANCIAL_API_HOST = process.env.REACT_APP_FINANCIAL_API_HOST;
 
-const moversApiHeaders = {
+const financialApiHeaders = {
   "X-RapidAPI-Key": API_KEY,
-  "X-RapidAPI-Host": MOVERS_API_HOST,
+  "X-RapidAPI-Host": FINANCIAL_API_HOST,
 };
 
-const baseUrl = `https://${MOVERS_API_HOST}`;
+const baseUrl = `https://${FINANCIAL_API_HOST}`;
 
-const createRequest = (url) => ({ url, headers: moversApiHeaders });
+const createRequest = (url) => ({ url, headers: financialApiHeaders });
 
 export const financialApi = createApi({
   reducerPath: "financialApi",

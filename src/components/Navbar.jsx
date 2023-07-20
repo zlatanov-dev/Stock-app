@@ -8,9 +8,12 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Navbar({ fontSize, fontSizePercent }) {
+
+  const performanceId = useSelector((state) => state.searchedStock.performanceId);
 
   return (
    
@@ -36,7 +39,7 @@ function Navbar({ fontSize, fontSizePercent }) {
           <StockOutlined style={{ fontSize: fontSizePercent }} />
         }
       >
-        Markets
+        <Link to={`/stocks/${performanceId}/details`}>Discover</Link>
       </Menu.Item>
       <Menu.Item
         key="3"
@@ -44,7 +47,7 @@ function Navbar({ fontSize, fontSizePercent }) {
           <ProfileOutlined style={{ fontSize: fontSizePercent }} />
         }
       >
-        News
+        <Link to="/news">News</Link>
       </Menu.Item>
       <Menu.Item
         key="4"

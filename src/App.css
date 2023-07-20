@@ -1,3 +1,12 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;1,300;1,400&display=swap');
+
+body {
+  font-family: 'Raleway', sans-serif !important;
+}
+:where(.ant-typography) {
+  font-family: 'Raleway', sans-serif;
+} */
+
 .site-layout-background {
   background: #fff;
   padding-bottom: 50;
@@ -149,6 +158,52 @@
 .ant-descriptions {
   margin: -10px 10px 0px 10px;
   padding-bottom: 10px;
+}
+
+/* News */
+.news-first-title{
+  font-size: 2rem;
+  color: #001529;
+  text-align: center;
+  padding: 10px;
+}
+
+.select-news {
+  width: 180px;
+}
+.ant-col {
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+}
+.news-card {
+  min-height: 300px !important;
+}
+.news-image-container {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+.news-title {
+  width: 70%;
+}
+
+.news-image-container .img {
+  width: 100px;
+  height: 100px;
+}
+.news-card p {
+  color: black;
+  margin: 10px 0px !important;
+}
+.provider-container {
+  display: flex;
+  justify-content: space-between;
+}
+.provider-name {
+  margin-left: 10px;
+}
+
+a:hover {
+  color: var(--pink) !important;
 }
 
 @keyframes marquee {

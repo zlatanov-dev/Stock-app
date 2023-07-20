@@ -15,12 +15,13 @@ export default function Description({ searchResults: stock }) {
   if (error) return <div>{error}</div>;
 
   const details = data.sections;
+  
   const businessUrl = details.contact?.url
     ? `https://${details.contact.url}`
     : null;
 
   return (
-    <Descriptions title={<Title level={2} style={{ color: "#001529" }}>Stock details</Title>}  titleStyle={{}}layout="vertical" bordered>
+    <Descriptions title={<Title level={2} style={{ color: "#001529" }}>Stock details</Title>}  layout="vertical" bordered>
       <Descriptions.Item label="Stock Name">{stock.name}</Descriptions.Item>
       <Descriptions.Item label="Ticker">{stock.ticker}</Descriptions.Item>
       <Descriptions.Item label="Currency">

@@ -4,6 +4,8 @@ import icon from "../../images/arrow.png";
 
 import { useGetMoversQuery } from "../../services/financialApi.js";
 
+import millify from "millify";
+
 function Movers() {
   const { data, isFetching } = useGetMoversQuery();
 
@@ -30,7 +32,7 @@ function Movers() {
                   </span>
                 </p>
                 <p>Exchange: {mover.exchange}</p>
-                <p>Volume: {mover.volume}</p>
+                <p>Volume: {millify(mover.volume)}</p>
                 <p>Ticker: {mover.ticker}</p>
               </Card>
             </Link>

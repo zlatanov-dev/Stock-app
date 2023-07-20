@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import ChartComponent from '../ChartComponent'
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import Description from "./Description";
 import { Col, Row, Button, Typography } from "antd";
 
 function Details({ searchBarWidth }) {
+
   const [selectedButton, setSelectedButton] = useState("DAY");
   const [queryFunction, setQueryFunction] = useState("TIME_SERIES_DAILY");
   const [interval, setInterval] = useState("5min");
@@ -18,15 +19,11 @@ function Details({ searchBarWidth }) {
 
   const stock = searchResults?.ticker || "MSFT";
 
-  const { data, isLoading, isError, refetch } = useGetStocksQuery({
+  const { data, isLoading, isError } = useGetStocksQuery({
     stock,
     queryFunction,
     interval,
   });
-
-  useEffect(() => {
-    refetch();
-  }, [queryFunction, refetch]);
 
   const { Title } = Typography;
 
