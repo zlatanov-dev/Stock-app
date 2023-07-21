@@ -1,46 +1,48 @@
-import { Card, Row, Col } from "antd";
-import { Link } from "react-router-dom";
-import icon from "../../images/arrow.png";
+import React from "react";
+import { Tabs, List } from "antd";
 
 import { useGetMoversQuery } from "../../services/financialApi.js";
 
-import millify from "millify";
-
 function Movers() {
-  const { data, isFetching } = useGetMoversQuery();
+  const { data, isFetching, isError } = useGetMoversQuery();
+
 
   if (isFetching) return <div>Loading...</div>;
-
-  const { gainers: moversList } = data;
+  if (isError) return <div>Oh no, there was an error</div>;
 
   return (
-    <>
-      <Row gutter={[32, 32]} className="mover-card-container">
-        {moversList?.map((mover, index) => (
-          <Col xs={24} sm={12} lg={6} className="mover-card" key={index}>
-            <Link to={`/stocks/${mover.performanceId}`}>
-              <Card
-                title={`${index + 1}. ${mover.name}`}
-                extra={<img className="mover-image" src={icon} alt="mover" />}
-                hoverable
-                style={{ fontSize: "1.2rem", fontWeight: "bold" }}
-              >
-                <p>
-                  Percent Change:{" "}
-                  <span style={{ color: "green" }}>
-                    {mover.percentNetChange.toFixed(2)}%
-                  </span>
-                </p>
-                <p>Exchange: {mover.exchange}</p>
-                <p>Volume: {millify(mover.volume)}</p>
-                <p>Ticker: {mover.ticker}</p>
-              </Card>
-            </Link>
-          </Col>
-        ))}
-      </Row>
-    </>
+    <Tabs defaultActiveKey="1" className="tabs-container" items={Object.entries(data).map(([key, array]) => ({
+      key,
+      tab: key.charAt(0).toUpperCase() + key.slice(1),
+      children: (
+        <List
+          itemLayout="vertical"
+          bordered
+          dataSource={array}
+          renderItem={(item, index) => (
+            <List.Item key={index}>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span>{item.name}</span>
+                <span>
+                  {item.percentNetChange > 0 ? (
+                    <span className="announcement-paragraph green">
+                      {item.percentNetChange.toFixed(2)}%
+                    </span>
+                  ) : (
+                    <span className="announcement-paragraph red">
+                      {item.percentNetChange.toFixed(2)}%
+                    </span>
+                  )}
+                </span>
+              </div>
+            </List.Item>
+          )}
+        />
+      ),
+    }))}>
+    </Tabs>
   );
 }
 
-export default Movers;
+
+export default React.memo(Movers);

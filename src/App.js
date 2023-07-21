@@ -1,8 +1,14 @@
-import { HomePage, Navbar, AnnouncementBar, News } from "./components";
+import {
+  HomePage,
+  Navbar,
+  AnnouncementBar,
+  News,
+  ErrorPage,
+} from "./components";
 import { deviceType, sizeByDevice } from "./utils/device";
 import { Route, Routes } from "react-router-dom";
 
-import { Layout} from "antd";
+import { Layout } from "antd";
 import { useEffect, useState } from "react";
 
 import "./App.css";
@@ -26,10 +32,7 @@ function App() {
   const size = sizeByDevice(device, collapsed);
 
   return (
-    <div
-      className="app"
-      style={{ height: "100vh", backgroundColor: "#F8F8FF" }}
-    >
+    <>
       <Layout style={{ minHeight: "100vh" }}>
         <Sider
           collapsible
@@ -37,35 +40,27 @@ function App() {
           onCollapse={(value) => setCollapsed(value)}
           width={size.width}
         >
-          <div className="demo-logo-vertical" />
           <Navbar {...size} />
         </Sider>
         <Layout>
-        < AnnouncementBar />
-          <Content
-            style={{
-              margin: "0 16px",
-              overflow: "auto",
-              minHeight: "calc(100vh - 64px)",
-              color: "#fff",
-            }}
-          >
-            <div
-              className="site-layout-background"
-            >
-              <Routes>
-                <Route path="/" element={<HomePage {...size} />} />
-                <Route path="/stocks/:performanceId/details" element={<Details {...size} />} />
-                <Route path="/news" element={<News />} />
-              </Routes>
-            </div>
+          <AnnouncementBar />
+          <Content className="site-layout">
+            <Routes>
+              <Route path="/" element={<HomePage {...size} />} />
+              <Route
+                path="/stocks/:performanceId/details"
+                element={<Details {...size} />}
+              />
+              <Route path="/news" element={<News />} />
+              <Route path="*" element={<ErrorPage />} />
+            </Routes>
           </Content>
           <Footer style={{ textAlign: "center", fontSize: "20px" }}>
             @2023 Created by Zlatanov-dev
           </Footer>
         </Layout>
       </Layout>
-    </div>
+    </>
   );
 }
 

@@ -1,10 +1,11 @@
+import React from "react";
 import { Badge, Descriptions, Typography } from "antd";
 
 import { useGetStockDetailsQuery } from "../../services/financialApi";
 import { useParams } from "react-router-dom";
 import millify from "millify";
 
-export default function Description({ searchResults: stock }) {
+function Description({ searchResults: stock }) {
   const { performanceId } = useParams();
   const { data, error, isLoading } = useGetStockDetailsQuery(performanceId);
 
@@ -69,3 +70,6 @@ export default function Description({ searchResults: stock }) {
     </Descriptions>
   );
 }
+
+export default React.memo(Description);
+

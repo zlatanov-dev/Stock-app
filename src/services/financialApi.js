@@ -31,9 +31,13 @@ export const financialApi = createApi({
     }),
     getStockDetails: builder.query({
       query: (performanceId) =>
-        createRequest(
-          `/stock/v3/get-profile?performanceId=${performanceId}`
-        ),
+        createRequest(`/stock/v3/get-profile?performanceId=${performanceId}`),
+    }),
+    getVideosId: builder.query({
+      query: () => createRequest(`/market/get-videos`),
+    }),
+    getVideos: builder.query({
+      query: (id) => createRequest(`/articles/get-details?id=${id}`),
     }),
   }),
 });
@@ -43,4 +47,6 @@ export const {
   useGetOnSearchQuery,
   useGetSearchedStockQuery,
   useGetStockDetailsQuery,
+  useGetVideosIdQuery,
+  useGetVideosQuery,
 } = financialApi;

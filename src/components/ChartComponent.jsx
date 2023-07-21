@@ -85,4 +85,4 @@ const ChartComponent = ({ data }) => {
   );
 };
 
-export default ChartComponent;
+export default React.memo(ChartComponent);

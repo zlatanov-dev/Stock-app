@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Typography, Row, Col, Avatar, Card } from "antd";
 import { fetchNewsData } from "../services/fetchNewsId";
 import { useGetNewsQuery } from "../services/newsApi";
@@ -88,4 +88,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default React.memo(News);
