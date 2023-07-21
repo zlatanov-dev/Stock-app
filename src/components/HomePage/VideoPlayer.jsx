@@ -12,12 +12,7 @@ const { Title, Text } = Typography;
 const VideoPlayer = () => {
   const { data, isLoading, isError } = useGetVideosIdQuery();
 
-  const id = useMemo(() => {
-    if (!data || !data.Videos) {
-      return [];
-    }
-    return data.Videos[0].ResourceId;
-  }, [data]);
+  
 
   const {
     data: video,
@@ -31,6 +26,9 @@ const VideoPlayer = () => {
   if (isError || isVideosError) {
     return <div>Something went wrong</div>;
   }
+
+  const id = data.Videos[0].ResourceId;
+  
 
   return (
     <div style={{ width: "100%", position: "sticky", top: "86px" }}>
