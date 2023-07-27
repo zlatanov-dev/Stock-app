@@ -37,7 +37,12 @@ export const financialApi = createApi({
       query: () => createRequest(`/market/get-videos`),
     }),
     getVideos: builder.query({
-      query: (id) => createRequest(`/articles/get-details?id=${id}`),
+      query: (id) => {
+        if (!id) {
+          return null;
+        }
+        return createRequest(`/articles/get-details?id=${id}`);
+      },
     }),
   }),
 });

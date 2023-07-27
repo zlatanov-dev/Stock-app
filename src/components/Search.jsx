@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useGetOnSearchQuery,
   useGetSearchedStockQuery,
@@ -19,6 +19,7 @@ function SearchBar({ searchBarWidth }) {
   const dispatch = useDispatch();
 
   const searchTerm = useSelector((state) => state.searchedStock.searchTerm);
+
   const performanceId = useSelector(
     (state) => state.searchedStock.performanceId
   );
@@ -39,25 +40,31 @@ function SearchBar({ searchBarWidth }) {
   };
 
   useEffect(() => {
-    dispatch(setPerformanceId(searchResult?.results?.[0]?.performanceId));
+    dispatch(setPerformanceId(searchResult?.results?.[0]?.performanceId || "0P000003MH"));
   }, [searchResult, dispatch]);
 
   useEffect(() => {
-    if (searchedStock) {
+    if (searchedStock && searchResult) {
       const updatedSearchedStock = {
         ...searchedStock,
-        name: searchResult?.results?.[0]?.name,
+        name: searchResult.results?.[0]?.name || '',
       };
       dispatch(setSearchResults(updatedSearchedStock));
     }
-  }, [searchedStock, dispatch, searchResult]);
+  }, [searchedStock, searchResult, dispatch]);
 
   useEffect(() => {
-    if (isSearching) {
+    if (isSearching && performanceId) {
       navigate(`/stocks/${performanceId}/details`);
     }
-  }, [isSearching, navigate, performanceId]);
+  }, [isSearching, performanceId, navigate]);
 
+  useEffect(() => {
+    return () => {
+      dispatch(setSearchTerm(''));
+    };
+  }, [dispatch]);
+  
   if (isSearchLoading || isSearchedStockLoading) return <p>Loading...</p>;
 
   return (
@@ -71,4 +78,4 @@ function SearchBar({ searchBarWidth }) {
   );
 }
 
-export default SearchBar;
+export default React.memo(SearchBar);
