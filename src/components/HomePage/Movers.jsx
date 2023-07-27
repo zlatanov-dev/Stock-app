@@ -6,11 +6,12 @@ import { useGetMoversQuery } from "../../services/financialApi.js";
 function Movers() {
   const { data, isFetching, isError } = useGetMoversQuery();
 
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
 
-  if (isFetching) return <div>Loading...</div>;
   if (isError) return <div>Oh no, there was an error</div>;
 
-  console.log("🚀 ~ file: Movers.jsx:43 ~ ", Object.entries(data))
 
   return (
     <Tabs defaultActiveKey="1" className="tabs-container" items={Object.entries(data).map(([key, array]) => ({

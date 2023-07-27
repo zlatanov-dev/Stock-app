@@ -9,10 +9,11 @@ const demoImage =
   "https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News";
 
 const News = () => {
-  const [newsId, setNewsId] = useState([]);
   const [newsThumbnail, setNewsThumbnail] = useState([]);
+  const [newsId, setNewsId] = useState([]);
   const { data, isLoading, isError } = useGetNewsQuery(newsId.join(", "));
   const newsData = useMemo(() => data?.data?.contents || [], [data]);
+
 
   useEffect(() => {
     const fetchNews = async () => {

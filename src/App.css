@@ -179,7 +179,7 @@ body {
   height: 100px;
 }
 .news-card p {
-  color: black;
+  color: #001529;
   margin: 10px 0px !important;
 }
 .provider-container {
@@ -191,8 +191,17 @@ body {
 }
 
 a:hover {
-  color: var(--pink) !important;
+  color: #5E60AB !important;
 }
+
+.top-news{
+  margin-top: 20px;
+}
+
+.top-news-list-link{
+  color: #001529;
+}
+
 
 /* Video */
 .video-container {

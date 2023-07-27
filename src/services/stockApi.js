@@ -18,14 +18,23 @@ export const stockApi = createApi({
   endpoints: (builder) => ({
     getStocks: builder.query({
       query: ({ stock, queryFunction, interval }) => {
-        if (queryFunction === 'TIME_SERIES_INTRADAY') {
-          return createRequest(`/query?function=${queryFunction}&symbol=${stock}&interval=${interval}&outputsize=compact`)
+        if (queryFunction === "TIME_SERIES_INTRADAY") {
+          return createRequest(
+            `/query?function=${queryFunction}&symbol=${stock}&interval=${interval}&outputsize=compact`
+          );
         }
-        return createRequest(`/query?function=${queryFunction}&symbol=${stock}`)
-      }
+        return createRequest(
+          `/query?function=${queryFunction}&symbol=${stock}`
+        );
+      },
     }),
-    
+    topNews: builder.query({
+      query: () =>
+        createRequest(
+          `/query?function=NEWS_SENTIMENT&topics=finance`
+        ),
+    }),
   }),
 });
 
-export const { useGetStocksQuery } = stockApi;
+export const { useGetStocksQuery, useTopNewsQuery } = stockApi;

@@ -36,7 +36,6 @@ const VideoPlayer = () => {
     return;
   }
 
-    console.log("🚀 ~ file: VideoPlayer.jsx:14 ~ VideoPlayer ~ data:", data)
   return (
     <div style={{ width: "100%", position: "sticky", top: "86px" }}>
       <Space>

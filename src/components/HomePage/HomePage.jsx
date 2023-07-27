@@ -1,40 +1,44 @@
+import { useSelector } from "react-redux";
 import SearchBar from "../Search.jsx";
 import Movers from "./Movers.jsx";
+import TopNews from "./TopNews.jsx";
 import VideoPlayer from "./VideoPlayer.jsx";
+import Loader from "../Loader.jsx";
 
-import { Col, Row, Typography } from "antd";
+import { Col, Row } from "antd";
+import { useEffect } from "react";
 
 function Homepage({ searchBarWidth }) {
-  const { Title } = Typography;
+  const { loading: isLoading } = useSelector((state) => state.loading);
   
-  return (
-    <>
-      <Row>
-        <Col span={24} className="search-bar-container">
-          <SearchBar searchBarWidth={searchBarWidth} />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={5} xs={24} sm={5} md={5}>
-          <Movers />
-          </Col>
-        <Col span={14} xs={24} sm={14} md={14} className="video-container">
-          <VideoPlayer xs={24} sm={5} md={5} />
-        </Col>
-        <Col span={5}>col-8</Col>
-      </Row>
-      {/* <Row>
-      <Col span={6}>col-6</Col>
-      <Col span={6}>col-6</Col>
-      <Col span={6}>col-6</Col>
-      <Col span={6}>col-6</Col>
-    </Row> */}
+  useEffect(() => {
+    console.log("🚀 ~ file: HomePage.jsx:12 ~ Homepage ~ isLoading:", isLoading)
+  }, [isLoading]);
+  
+  if (isLoading) {
+    return < Loader />;
+  }
 
-      {/* <Title className="movers-title">Movers</Title>
-        <Title className="movers-secondary-title">
-          Discover the equities with the greatest gains in the trading day.
-        </Title> */}
-    </>
+  return (
+    
+        <>
+          <Row>
+            <Col span={24} className="search-bar-container">
+              <SearchBar searchBarWidth={searchBarWidth} />
+            </Col>
+          </Row>
+          <Row>
+            <Col span={5} xs={24} sm={5} md={5}>
+              <Movers />
+            </Col>
+            <Col span={14} xs={24} sm={14} md={14} className="video-container">
+              <VideoPlayer xs={24} sm={5} md={5} />
+            </Col>
+            <Col span={5} xs={24} sm={5} md={5} className="top-news">
+              <TopNews />
+            </Col>
+          </Row>
+        </>
   );
 }
 
