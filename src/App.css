@@ -135,11 +135,11 @@ body {
   display: inline;
   margin-left: 5px;
 }
-.green span {
+.green{
   color: #5db43d;
 }
 
-.red span {
+.red {
   color: #870c1f;
 }
 

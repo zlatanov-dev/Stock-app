@@ -7,7 +7,7 @@ import {
   useGetVideosQuery,
 } from "../../services/financialApi";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const VideoPlayer = () => {
   const { data, isLoading, isError } = useGetVideosIdQuery();
@@ -38,46 +38,45 @@ const VideoPlayer = () => {
 
     console.log("🚀 ~ file: VideoPlayer.jsx:14 ~ VideoPlayer ~ data:", data)
   return (
-    <h1>HELLOU</h1>
-  //   <div style={{ width: "100%", position: "sticky", top: "86px" }}>
-  //     <Space>
-  //       <Title
-  //         level={3}
-  //         style={{ color: "#001529", fontWeight: "bold", paddingBottom: "5px" }}
-  //       >
-  //         Money Talks: Finance & Investing
-  //       </Title>
-  //     </Space>
+    <div style={{ width: "100%", position: "sticky", top: "86px" }}>
+      <Space>
+        <Title
+          level={3}
+          style={{ color: "#001529", fontWeight: "bold", paddingBottom: "5px" }}
+        >
+          Money Talks: Finance & Investing
+        </Title>
+      </Space>
 
-  //     <ReactPlayer
-  //       url={video?.video?.files?.sd}
-  //       className="react-player"
-  //       controls
-  //       light={video?.video?.thumbnail}
-  //       config={{
-  //         file: {
-  //           attributes: {
-  //             poster: video?.video?.thumbnail,
-  //           },
-  //         },
-  //       }}
-  //     />
-  //     <Space>
-  //       <Title
-  //         level={4}
-  //         style={{ color: "#001529", fontWeight: "bold", padding: "5px" }}
-  //       >
-  //         <AreaChartOutlined
-  //           style={{
-  //             fontSize: "1.5rem",
-  //             color: "#5DB43D",
-  //             margin: "0 15px 0 5px",
-  //           }}
-  //         />
-  //         {video.title}
-  //       </Title>
-  //     </Space>
-  //   </div>
+      <ReactPlayer
+        url={video?.video?.files?.sd}
+        className="react-player"
+        controls
+        light={video?.video?.thumbnail}
+        config={{
+          file: {
+            attributes: {
+              poster: video?.video?.thumbnail,
+            },
+          },
+        }}
+      />
+      <Space>
+        <Title
+          level={4}
+          style={{ color: "#001529", fontWeight: "bold", padding: "5px" }}
+        >
+          <AreaChartOutlined
+            style={{
+              fontSize: "1.5rem",
+              color: "#5DB43D",
+              margin: "0 15px 0 5px",
+            }}
+          />
+          {video.title}
+        </Title>
+      </Space>
+    </div>
   );
 };
 export default React.memo(VideoPlayer);

@@ -10,10 +10,12 @@ function Movers() {
   if (isFetching) return <div>Loading...</div>;
   if (isError) return <div>Oh no, there was an error</div>;
 
+  console.log("🚀 ~ file: Movers.jsx:43 ~ ", Object.entries(data))
+
   return (
     <Tabs defaultActiveKey="1" className="tabs-container" items={Object.entries(data).map(([key, array]) => ({
       key,
-      tab: key.charAt(0).toUpperCase() + key.slice(1),
+      label: (key.charAt(0).toUpperCase() + key.slice(1)),
       children: (
         <List
           itemLayout="vertical"
